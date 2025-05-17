@@ -1,32 +1,6 @@
 use bevy::prelude::*;
 
-#[derive(Component)]
-struct Piece {
-    x: u32,
-    y: u32,
-}
-
-#[derive(Component)]
-struct ActivePiece {}
-
-#[derive(Component)]
-struct NextPiece {}
-
-enum PieceKind {
-    I,
-    O,
-    T,
-    S,
-    Z,
-    J,
-    L,
-}
-
-fn setup(mut commands: Commands, mut meshes: ResMut<Assets<Mesh>>) {
-    commands.spawn(Camera2d);
-
-    commands.spawn(());
-}
+mod tetromino;
 
 fn main() {
     App::new()
@@ -39,7 +13,11 @@ fn main() {
             }),
             ..default()
         }))
-        .insert_resource(ClearColor(Color::rgb(127.0, 127.0, 127.0)))
+        .insert_resource(ClearColor(Color::srgb(127.0, 127.0, 127.0)))
         .add_systems(Startup, setup)
         .run();
+}
+
+fn setup(mut commands: Commands) {
+    commands.spawn(Camera2d);
 }
