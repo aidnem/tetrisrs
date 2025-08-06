@@ -2,6 +2,8 @@ use bevy::prelude::*;
 
 mod tetromino;
 
+use tetromino::plugin::TetrominoPlugin;
+
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins.set(WindowPlugin {
@@ -13,6 +15,7 @@ fn main() {
             }),
             ..default()
         }))
+        .add_plugins(TetrominoPlugin)
         .insert_resource(ClearColor(Color::srgb(127.0, 127.0, 127.0)))
         .add_systems(Startup, setup)
         .run();

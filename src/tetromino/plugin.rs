@@ -41,6 +41,9 @@ struct ActivePiece();
 #[derive(Component)]
 struct NextPiece();
 
+#[derive(Component)]
+struct NeedsRedraw();
+
 enum PieceKind {
     I,
     O,
@@ -113,3 +116,8 @@ fn gravity_seconds_from_level(level: usize) -> f32 {
         _ => 0.01667,
     }
 }
+
+fn draw_tetromino(
+    mut commands: Commands,
+    tetromino_query: Query<(Entity, &mut Tetromino), (With<ActivePiece>, With<NeedsRedraw>)>
+) {}
